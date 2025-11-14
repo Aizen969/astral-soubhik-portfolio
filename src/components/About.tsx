@@ -22,7 +22,7 @@ const About = () => {
             style={{ animationDelay: "0.2s" }}
           >
             <CardContainer containerClassName="py-0">
-              <CardBody className="relative group/card w-auto h-auto">
+              <CardBody className="relative group/card w-auto h-auto max-w-[360px] mx-auto">
                 <CardItem
                   translateZ="60"
                   className="w-full"
