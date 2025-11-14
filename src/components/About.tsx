@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Download, Briefcase } from "lucide-react";
+import { CardContainer, CardBody, CardItem } from "./ui/3d-card";
 import profileImage from "@/assets/profile.jpeg";
 
 const About = () => {
@@ -15,21 +16,30 @@ const About = () => {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Photo Card */}
+          {/* Left Side - 3D Photo Card */}
           <div
-            className="group relative animate-fade-in"
+            className="animate-fade-in"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="relative overflow-hidden rounded-2xl border-2 border-primary/30 shadow-glow-purple transition-all duration-500 hover:shadow-glow-pink hover:scale-105 hover:rotate-1">
-              {/* Nebula overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <img
-                src={profileImage}
-                alt="Soubhik Sadhu"
-                className="w-full h-auto object-cover"
-              />
-            </div>
+            <CardContainer containerClassName="py-0">
+              <CardBody className="relative group/card w-auto h-auto">
+                <CardItem
+                  translateZ="60"
+                  className="w-full"
+                >
+                  <div className="relative overflow-hidden rounded-2xl border-2 border-primary/30 shadow-glow-blue transition-all duration-500 group-hover/card:shadow-glow-pink">
+                    {/* Nebula overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 z-10" />
+                    
+                    <img
+                      src={profileImage}
+                      alt="Soubhik Sadhu"
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                </CardItem>
+              </CardBody>
+            </CardContainer>
           </div>
 
           {/* Right Side - About Text */}
