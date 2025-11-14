@@ -5,18 +5,26 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import LoadingScreen from "@/components/LoadingScreen";
+import CustomCursor from "@/components/CustomCursor";
+import FloatingNavigation from "@/components/FloatingNavigation";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <About />
-      <Timeline />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      <LoadingScreen />
+      <CustomCursor />
+      <div className="min-h-screen">
+        <Hero />
+        <About />
+        <Timeline />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+        <FloatingNavigation />
+      </div>
+    </>
   );
 };
 
