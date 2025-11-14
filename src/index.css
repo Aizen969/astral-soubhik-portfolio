@@ -8,56 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cosmic Background Colors */
-    --background: 230 35% 7%;
+    /* Cosmic Background Colors - Dark Blue Theme */
+    --background: 220 40% 6%;
     --foreground: 210 40% 98%;
 
     /* Card & Surface Colors */
-    --card: 230 30% 10%;
+    --card: 220 35% 9%;
     --card-foreground: 210 40% 98%;
-    --card-glass: 230 30% 15%;
+    --card-glass: 220 35% 12%;
 
-    --popover: 230 35% 10%;
+    --popover: 220 35% 9%;
     --popover-foreground: 210 40% 98%;
 
-    /* Primary Cosmic Purple/Pink */
-    --primary: 280 80% 60%;
+    /* Primary Cosmic Blue/Cyan */
+    --primary: 200 85% 55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 280 100% 70%;
+    --primary-glow: 200 100% 65%;
 
-    /* Secondary Cosmic Blue */
-    --secondary: 240 70% 50%;
+    /* Secondary Deep Blue */
+    --secondary: 220 70% 45%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-glow: 240 100% 70%;
+    --secondary-glow: 220 100% 65%;
 
     /* Muted & Accent */
-    --muted: 230 25% 20%;
+    --muted: 220 25% 18%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 320 80% 55%;
+    --accent: 190 75% 50%;
     --accent-foreground: 0 0% 100%;
-    --accent-glow: 320 100% 70%;
+    --accent-glow: 190 100% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders & Inputs */
-    --border: 230 30% 25%;
-    --input: 230 30% 20%;
-    --ring: 280 80% 60%;
+    --border: 220 30% 22%;
+    --input: 220 30% 18%;
+    --ring: 200 85% 55%;
 
     --radius: 0.75rem;
 
-    /* Cosmic Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(280 80% 60%) 0%, hsl(240 70% 50%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(230 35% 7%) 0%, hsl(230 30% 10%) 100%);
-    --gradient-glass: linear-gradient(135deg, hsla(230 30% 15% / 0.8) 0%, hsla(230 30% 12% / 0.6) 100%);
+    /* Cosmic Gradients - Blue Theme */
+    --gradient-cosmic: linear-gradient(135deg, hsl(200 85% 55%) 0%, hsl(220 70% 45%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(220 40% 6%) 0%, hsl(220 35% 9%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(220 35% 12% / 0.8) 0%, hsla(220 35% 10% / 0.6) 100%);
     
-    /* Glows & Shadows */
-    --glow-purple: 0 0 40px hsla(280 100% 70% / 0.3);
-    --glow-pink: 0 0 40px hsla(320 100% 70% / 0.3);
-    --glow-blue: 0 0 40px hsla(240 100% 70% / 0.3);
-    --shadow-cosmic: 0 10px 40px hsla(280 80% 60% / 0.2);
+    /* Glows & Shadows - Blue Theme */
+    --glow-purple: 0 0 40px hsla(200 100% 65% / 0.3);
+    --glow-pink: 0 0 40px hsla(190 100% 65% / 0.3);
+    --glow-blue: 0 0 40px hsla(200 100% 70% / 0.3);
+    --shadow-cosmic: 0 10px 40px hsla(200 85% 55% / 0.2);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,7 +72,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(180deg, hsl(230 35% 7%) 0%, hsl(230 30% 10%) 100%);
+    background: linear-gradient(180deg, hsl(220 40% 6%) 0%, hsl(220 35% 9%) 100%);
   }
 
   /* Smooth Scroll */

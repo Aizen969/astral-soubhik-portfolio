@@ -1,5 +1,7 @@
 import { Github, Linkedin, Twitter, Instagram, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
+import { ShootingStars } from "./ui/shooting-stars";
+import { StarsBackground } from "./ui/stars-background";
 import cosmicHero from "@/assets/cosmic-hero.jpg";
 
 const Hero = () => {
@@ -27,21 +29,15 @@ const Hero = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
-      {/* Animated Stars */}
-      <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-twinkle"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Stars Background & Shooting Stars */}
+      <StarsBackground className="absolute inset-0" starDensity={0.0002} />
+      <ShootingStars 
+        className="absolute inset-0" 
+        starColor="#60A5FA" 
+        trailColor="#38BDF8"
+        minSpeed={15}
+        maxSpeed={35}
+      />
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in-up">
