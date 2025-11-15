@@ -1,122 +1,160 @@
 import { Button } from "./ui/button";
-import { ExternalLink } from "lucide-react";
+import { Carousel, Card } from "./ui/apple-cards-carousel";
 import skillSyncImg from "@/assets/skillsync-dashboard.jpg";
 import airCanvasImg from "@/assets/aircanvas-demo.jpg";
 import getSetGreenImg from "@/assets/getsetgreen-lpr.jpg";
 
-interface Project {
-  title: string;
-  description: string;
-  contribution: string;
-  techStack: string;
-  image: string;
-  link: string;
-}
-
 const Projects = () => {
-  const projects: Project[] = [
+  const projectData = [
     {
+      category: "Developer Productivity Dashboard",
       title: "SkillSync",
-      description:
-        "Developer productivity dashboard syncing progress from sites like LeetCode, HackerRank, CodeChef.",
-      contribution: "Built full app + UI/UX",
-      techStack: "Python, Flask, MySQL, React, Tailwind",
-      image: skillSyncImg,
-      link: "#",
+      src: skillSyncImg,
+      content: (
+        <div className="space-y-6">
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-4">
+              <span className="font-bold text-foreground">
+                Complete developer productivity dashboard
+              </span>{" "}
+              that syncs your coding progress from multiple competitive programming platforms.
+              Track your journey across LeetCode, HackerRank, and CodeChef all in one place.
+            </p>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+              Built the full application including UI/UX design, backend API integration,
+              and data visualization components.
+            </p>
+          </div>
+          
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-primary-glow font-semibold mb-3">Tech Stack</h4>
+            <div className="flex flex-wrap gap-2">
+              {["Python", "Flask", "MySQL", "React", "Tailwind"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full bg-primary/20 text-primary-glow text-sm font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-accent-glow font-semibold mb-3">My Contribution</h4>
+            <p className="text-muted-foreground text-sm">
+              Built the full app + UI/UX
+            </p>
+          </div>
+        </div>
+      ),
     },
     {
+      category: "Real-Time Hand-Tracking Drawing App",
       title: "Air-Canvas",
-      description:
-        "Real-time OpenCV-based drawing using a colored marker.",
-      contribution: "Developed full computer vision system",
-      techStack: "Python, OpenCV, CV, ML",
-      image: airCanvasImg,
-      link: "#",
+      src: airCanvasImg,
+      content: (
+        <div className="space-y-6">
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-4">
+              <span className="font-bold text-foreground">
+                Innovative drawing application using computer vision
+              </span>{" "}
+              that allows users to draw in the air using a colored marker.
+              Real-time hand tracking and gesture recognition powered by OpenCV.
+            </p>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+              Developed the complete computer vision system with advanced color detection,
+              hand tracking algorithms, and real-time rendering.
+            </p>
+          </div>
+          
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-primary-glow font-semibold mb-3">Tech Stack</h4>
+            <div className="flex flex-wrap gap-2">
+              {["Python", "OpenCV", "Computer Vision", "Machine Learning"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full bg-primary/20 text-primary-glow text-sm font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-accent-glow font-semibold mb-3">My Contribution</h4>
+            <p className="text-muted-foreground text-sm">
+              Built the full computer vision system
+            </p>
+          </div>
+        </div>
+      ),
     },
     {
+      category: "AI-driven Eco-Travel Assist",
       title: "GetSetGreen",
-      description:
-        "Eco-friendly travel assist system with license plate recognition + emission checking.",
-      contribution: "Built LPR system and backend",
-      techStack: "Python, Flask, OpenCV, ML",
-      image: getSetGreenImg,
-      link: "#",
+      src: getSetGreenImg,
+      content: (
+        <div className="space-y-6">
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed mb-4">
+              <span className="font-bold text-foreground">
+                Eco-friendly travel assistance system
+              </span>{" "}
+              featuring license plate recognition and emission checking capabilities.
+              Helps travelers make environmentally conscious transportation choices.
+            </p>
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+              Developed the License Plate Recognition (LPR) system and backend infrastructure
+              for emissions data processing and eco-route calculations.
+            </p>
+          </div>
+          
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-primary-glow font-semibold mb-3">Tech Stack</h4>
+            <div className="flex flex-wrap gap-2">
+              {["Python", "Flask", "OpenCV", "Machine Learning"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full bg-primary/20 text-primary-glow text-sm font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-2xl bg-card/50 backdrop-blur-sm p-6 md:p-8">
+            <h4 className="text-accent-glow font-semibold mb-3">My Contribution</h4>
+            <p className="text-muted-foreground text-sm">
+              Backend + LPR system
+            </p>
+          </div>
+        </div>
+      ),
     },
   ];
+
+  const cards = projectData.map((card, index) => (
+    <Card key={card.src} card={card} index={index} />
+  ));
 
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-cosmic bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-cosmic bg-clip-text text-transparent">
           Featured Projects
         </h2>
+        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          Explore my portfolio of AI-driven applications and innovative solutions
+        </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group animate-fade-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
-              <div className="relative h-full rounded-2xl bg-gradient-glass backdrop-blur-md border border-primary/30 overflow-hidden hover:border-primary/50 hover:shadow-glow-purple transition-all duration-500 hover:scale-105">
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6 space-y-4">
-                  <h3 className="text-2xl font-bold bg-gradient-cosmic bg-clip-text text-transparent">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {project.description}
-                  </p>
-
-                  <div className="space-y-2">
-                    <div>
-                      <span className="text-xs font-semibold text-primary-glow">
-                        My Contribution:
-                      </span>
-                      <p className="text-xs text-muted-foreground">
-                        {project.contribution}
-                      </p>
-                    </div>
-
-                    <div>
-                      <span className="text-xs font-semibold text-accent-glow">
-                        Tech Stack:
-                      </span>
-                      <p className="text-xs text-muted-foreground">
-                        {project.techStack}
-                      </p>
-                    </div>
-                  </div>
-
-                  <Button
-                    variant="default"
-                    className="w-full bg-gradient-cosmic hover:shadow-glow-purple transition-all duration-300"
-                    asChild
-                  >
-                    <a href={project.link}>
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      View Project
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel items={cards} />
 
         {/* View All Projects Button */}
-        <div className="text-center animate-fade-in" style={{ animationDelay: "0.6s" }}>
+        <div className="text-center mt-12 animate-fade-in">
           <Button
             variant="outline"
             size="lg"
