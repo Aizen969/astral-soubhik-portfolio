@@ -105,12 +105,25 @@ All colors MUST be HSL.
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer utilities {
+  /* Float idle animation for skill cards */
+  @keyframes floatIdle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
   }
 
-  body {
-    @apply bg-background text-foreground;
+  .animate-float-idle {
+    animation: floatIdle 8s ease-in-out infinite;
+  }
+
+  /* Shimmer effect for skill cards */
+  @keyframes shimmerEffect {
+    0% { transform: translateX(-120%); opacity: 0; }
+    50% { opacity: 0.9; }
+    100% { transform: translateX(120%); opacity: 0; }
+  }
+
+  .animate-shimmer-effect {
+    animation: shimmerEffect 1.1s ease-in-out;
   }
 }
