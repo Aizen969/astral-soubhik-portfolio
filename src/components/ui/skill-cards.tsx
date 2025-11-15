@@ -51,22 +51,22 @@ export const SkillCards = ({
   };
 
   return (
-    <div className={cn("mx-auto max-w-7xl px-6 py-12", className)}>
+    <div className={cn("mx-auto max-w-7xl px-4 py-4", className)}>
       <motion.div
         ref={containerRef}
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         className={cn(
-          "rounded-2xl backdrop-blur-md",
+          "rounded-xl backdrop-blur-md",
           "bg-[rgba(14,18,28,0.45)] border border-[rgba(255,255,255,0.04)]",
-          "shadow-[0_12px_40px_rgba(0,0,0,0.6)]",
-          "p-8 md:p-12"
+          "shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
+          "p-4 md:p-6"
         )}
       >
         <div
           className={cn(
-            "grid gap-6",
+            "grid gap-3",
             `grid-cols-${columns.mobile}`,
             `sm:grid-cols-${columns.tablet}`,
             `lg:grid-cols-${columns.desktop}`
@@ -143,8 +143,8 @@ const SkillCard = ({ skill, index, showLevel, prefersReducedMotion }: SkillCardP
     <motion.button
       variants={cardVariants}
       className={cn(
-        "group relative flex flex-col items-center gap-3 p-6",
-        "rounded-2xl",
+        "group relative flex flex-col items-center gap-2 p-4",
+        "rounded-xl",
         "bg-gradient-to-b from-[rgba(255,255,255,0.02)] to-[rgba(255,255,255,0.01)]",
         "border border-[rgba(255,255,255,0.04)]",
         "shadow-sm",
@@ -161,7 +161,7 @@ const SkillCard = ({ skill, index, showLevel, prefersReducedMotion }: SkillCardP
       title={skill.description || skill.name}
     >
       {/* Icon Container */}
-      <div className="relative h-20 w-20 flex items-center justify-center">
+      <div className="relative h-12 w-12 flex items-center justify-center">
         {/* Glow Effect */}
         <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
         
@@ -174,7 +174,7 @@ const SkillCard = ({ skill, index, showLevel, prefersReducedMotion }: SkillCardP
             "overflow-hidden"
           )}
         >
-          <Icon className="w-10 h-10 text-primary-glow relative z-10 group-hover:text-accent-glow transition-colors duration-300" />
+          <Icon className="w-6 h-6 text-primary-glow relative z-10 group-hover:text-accent-glow transition-colors duration-300" />
           
           {/* Shimmer Effect */}
           {showShimmer && (
@@ -190,7 +190,7 @@ const SkillCard = ({ skill, index, showLevel, prefersReducedMotion }: SkillCardP
       </div>
 
       {/* Skill Name */}
-      <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300 text-center">
+      <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300 text-center">
         {skill.name}
       </span>
 
@@ -201,7 +201,7 @@ const SkillCard = ({ skill, index, showLevel, prefersReducedMotion }: SkillCardP
             <div
               key={i}
               className={cn(
-                "w-1.5 h-1.5 rounded-full",
+                "w-1 h-1 rounded-full",
                 i < Math.round(skill.level! / 20)
                   ? "bg-primary-glow"
                   : "bg-muted/30"

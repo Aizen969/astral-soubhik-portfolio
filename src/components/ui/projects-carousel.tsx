@@ -16,13 +16,31 @@ interface Project {
 interface ProjectsCarouselProps {
   projects: Project[];
   className?: string;
+  infinite?: boolean;
 }
 
-export const ProjectsCarousel = ({ projects, className }: ProjectsCarouselProps) => {
+export const ProjectsCarousel = ({ projects, className, infinite = false }: ProjectsCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // For infinite scroll, triple the projects array
+  const displayProjects = infinite ? [...projects, ...projects, ...projects] : projects;
+
+  // Auto-scroll for infinite carousel
+  useEffect(() => {
+    if (!infinite || !carouselRef.current) return;
+
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const cardWidth = carouselRef.current.querySelector(".carousel-card")?.clientWidth || 384;
+        carouselRef.current.scrollBy({ left: cardWidth + 24, behavior: "smooth" });
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [infinite]);
 
   const checkScrollability = () => {
     if (carouselRef.current) {
@@ -84,9 +102,9 @@ export const ProjectsCarousel = ({ projects, className }: ProjectsCarouselProps)
         role="region"
         aria-label="Projects carousel"
       >
-        {projects.map((project, index) => (
+        {displayProjects.map((project, index) => (
           <ProjectCard
-            key={project.id}
+            key={`${project.id}-${index}`}
             project={project}
             index={index}
           />
