@@ -1,17 +1,10 @@
-import { Github, Linkedin, Twitter, Instagram, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-  ];
-
   return (
-    <footer className="relative py-12 px-4 bg-card/30 backdrop-blur-md border-t border-primary/20">
+    <footer className="relative py-8 px-4 bg-card/30 backdrop-blur-md border-t border-primary/20">
       {/* Top Glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
@@ -32,20 +25,6 @@ const Footer = () => {
       </div>
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Social Icons */}
-        <div className="flex justify-center gap-6 mb-8">
-          {socialLinks.map((social) => (
-            <a
-              key={social.label}
-              href={social.href}
-              aria-label={social.label}
-              className="p-3 rounded-full bg-card/50 backdrop-blur-sm border border-border hover:border-primary hover:shadow-glow-purple transition-all duration-300 hover:scale-110 group"
-            >
-              <social.icon className="w-5 h-5 group-hover:text-primary-glow transition-colors" />
-            </a>
-          ))}
-        </div>
-
         {/* Copyright */}
         <div className="text-center">
           <p className="text-muted-foreground flex items-center justify-center gap-2">
