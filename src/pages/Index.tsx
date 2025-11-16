@@ -1,4 +1,4 @@
-import Hero from "@/components/Hero";
+import BlackHoleHero from "@/components/BlackHoleHero";
 import About from "@/components/About";
 import Timeline from "@/components/Timeline";
 import Projects from "@/components/Projects";
@@ -15,7 +15,7 @@ const Index = () => {
       <LoadingScreen />
       <CustomCursor />
       <div className="min-h-screen">
-        <Hero />
+        <BlackHoleHero />
         <About />
         <Timeline />
         <Projects />
