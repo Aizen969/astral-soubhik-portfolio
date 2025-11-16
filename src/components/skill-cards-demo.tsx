@@ -185,9 +185,7 @@ export default function SkillCardsDemo() {
   return (
     <SkillCards 
       skills={skills} 
-      columns={{ mobile: 3, tablet: 5, desktop: 8 }}
-      showLevel={false}
-      className="py-2"
+      className="py-4"
     />
   );
 }
