@@ -47,14 +47,14 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-20 px-4 overflow-hidden">
-      {/* Space Background */}
-      <StarsBackground className="absolute inset-0" starDensity={0.0002} />
+      {/* Space Background - Optimized */}
+      <StarsBackground className="absolute inset-0" starDensity={0.0001} />
       <ShootingStars 
         className="absolute inset-0" 
         starColor="#60A5FA" 
         trailColor="#38BDF8"
-        minSpeed={15}
-        maxSpeed={35}
+        minSpeed={20}
+        maxSpeed={30}
       />
       
       <div className="relative z-10 max-w-4xl mx-auto">
