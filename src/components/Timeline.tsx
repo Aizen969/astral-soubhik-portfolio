@@ -1,5 +1,7 @@
 import { GraduationCap, Briefcase } from "lucide-react";
 import { Timeline as TimelineUI } from "@/components/ui/timeline";
+import { ShootingStars } from "./ui/shooting-stars";
+import { StarsBackground } from "./ui/stars-background";
 
 const Timeline = () => {
   const data = [
@@ -80,8 +82,18 @@ const Timeline = () => {
   ];
 
   return (
-    <section id="timeline" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section id="timeline" className="relative py-20 px-4 overflow-hidden">
+      {/* Space Background */}
+      <StarsBackground className="absolute inset-0" starDensity={0.0002} />
+      <ShootingStars 
+        className="absolute inset-0" 
+        starColor="#60A5FA" 
+        trailColor="#38BDF8"
+        minSpeed={15}
+        maxSpeed={35}
+      />
+      
+      <div className="relative z-10 max-w-7xl mx-auto">
         <TimelineUI data={data} />
       </div>
     </section>

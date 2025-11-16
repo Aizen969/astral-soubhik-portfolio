@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-8 px-4 bg-card/30 backdrop-blur-md border-t border-primary/20">
+    <footer className="relative py-8 px-4 mb-24 bg-card/30 backdrop-blur-md border-t border-primary/20">
       {/* Top Glow */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
 
