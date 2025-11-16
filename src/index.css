@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,6 +70,7 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 
   body {
@@ -125,5 +128,24 @@ All colors MUST be HSL.
 
   .animate-shimmer-effect {
     animation: shimmerEffect 1.1s ease-in-out;
+  }
+
+  /* Gradient text utilities */
+  .gradient-text-cosmic {
+    background: linear-gradient(135deg, hsl(200 100% 65%) 0%, hsl(220 85% 70%) 50%, hsl(190 100% 70%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
