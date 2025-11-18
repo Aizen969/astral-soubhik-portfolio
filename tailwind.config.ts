@@ -94,6 +94,10 @@ export default {
           "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
           "50%": { opacity: "1", transform: "scale(1.2)" },
         },
+        "infinite-scroll": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -105,6 +109,7 @@ export default {
         "shimmer": "shimmer 3s linear infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "twinkle": "twinkle 3s ease-in-out infinite",
+        "infinite-scroll": "infinite-scroll 30s linear infinite",
       },
       backgroundImage: {
         "gradient-cosmic": "var(--gradient-cosmic)",
