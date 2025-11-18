@@ -71,12 +71,52 @@ const projects: Project[] = [
   },
 ];
 
+const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => void }) => (
+  <div
+    className="flex-shrink-0 w-[350px] mx-3 group relative rounded-2xl bg-card/80 backdrop-blur-md border border-border p-6 hover:border-primary/50 hover:shadow-glow-blue transition-all duration-300 cursor-pointer"
+    onClick={onClick}
+  >
+    <h3 className="text-xl font-bold mb-2 bg-gradient-cosmic bg-clip-text text-transparent">
+      {project.title}
+    </h3>
+    
+    <p className="text-sm text-muted-foreground mb-4">
+      {project.subtitle}
+    </p>
+    
+    <div className="flex flex-wrap gap-2 mb-4">
+      {project.techStack.map((tech, techIndex) => (
+        <span
+          key={techIndex}
+          className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+        >
+          {tech}
+        </span>
+      ))}
+    </div>
+    
+    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+      {project.description}
+    </p>
+    
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-glow transition-colors"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <Github className="w-4 h-4" />
+      View on GitHub
+    </a>
+  </div>
+);
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="projects" className="relative py-20 px-4 overflow-hidden">
-      {/* Space Background - Optimized */}
       <StarsBackground className="absolute inset-0" starDensity={0.0001} />
       <ShootingStars 
         className="absolute inset-0" 
@@ -94,132 +134,88 @@ const Projects = () => {
           Explore my portfolio of AI-driven applications and innovative solutions
         </p>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative rounded-2xl bg-card/80 backdrop-blur-md border border-border p-6 hover:border-primary/50 hover:shadow-glow-blue transition-all duration-300 cursor-pointer"
-              onClick={() => setSelectedProject(project)}
-            >
-              {/* Project Title */}
-              <h3 className="text-xl font-bold mb-2 bg-gradient-cosmic bg-clip-text text-transparent">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">{project.subtitle}</p>
-
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 text-xs rounded-md bg-primary/10 text-primary border border-primary/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Description */}
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                {project.description}
-              </p>
-
-              {/* GitHub Link */}
-              <div className="flex items-center gap-2">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary-glow transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <Github className="w-4 h-4" />
-                  View on GitHub
-                </a>
-                <ExternalLink className="w-3 h-3 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-            </div>
-          ))}
+        {/* Infinite Scrolling Projects */}
+        <div className="relative overflow-hidden mb-12">
+          <div className="flex animate-infinite-scroll hover:[animation-play-state:paused]">
+            {/* First set */}
+            {projects.map((project) => (
+              <ProjectCard
+                key={`${project.id}-1`}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+              />
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {projects.map((project) => (
+              <ProjectCard
+                key={`${project.id}-2`}
+                project={project}
+                onClick={() => setSelectedProject(project)}
+              />
+            ))}
+          </div>
         </div>
 
         {/* View All Projects Button */}
-        <div className="text-center animate-fade-in">
+        <div className="text-center">
           <Button
             variant="outline"
             size="lg"
-            asChild
             className="border-primary hover:bg-primary/10 hover:shadow-glow-blue transition-all duration-300"
           >
-            <a
-              href="https://github.com/SoubhLance"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View all projects on GitHub"
-            >
-              VIEW ALL PROJECTS
-            </a>
+            <ExternalLink className="w-4 h-4 mr-2" />
+            View All Projects
           </Button>
         </div>
-      </div>
 
-      {/* Project Detail Modal */}
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl bg-gradient-cosmic bg-clip-text text-transparent">
-              {selectedProject?.title}
-            </DialogTitle>
-            <DialogDescription className="text-base">
-              {selectedProject?.subtitle}
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className="space-y-6 mt-4">
-            {/* Tech Stack */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-foreground">Technologies Used</h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedProject?.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1.5 text-sm rounded-lg bg-primary/10 text-primary border border-primary/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
+        {/* Modal for Project Details */}
+        <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle className="text-2xl bg-gradient-cosmic bg-clip-text text-transparent">
+                {selectedProject?.title}
+              </DialogTitle>
+              <DialogDescription className="text-base">
+                {selectedProject?.subtitle}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-2 text-primary">Technologies Used:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject?.techStack.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-2 text-primary">Description:</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  {selectedProject?.description}
+                </p>
+              </div>
+              
+              <div className="pt-4">
+                <Button
+                  variant="default"
+                  className="w-full bg-gradient-cosmic hover:shadow-glow-purple transition-all duration-300"
+                  onClick={() => window.open(selectedProject?.href, '_blank')}
+                >
+                  <Github className="w-4 h-4 mr-2" />
+                  Open on GitHub
+                </Button>
               </div>
             </div>
-
-            {/* Description */}
-            <div>
-              <h4 className="text-sm font-semibold mb-3 text-foreground">About the Project</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                {selectedProject?.description}
-              </p>
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-4 pt-4">
-              <Button
-                variant="default"
-                asChild
-                className="flex-1 bg-gradient-cosmic hover:shadow-glow-purple transition-all duration-300"
-              >
-                <a
-                  href={selectedProject?.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2"
-                >
-                  <Github className="w-4 h-4" />
-                  View on GitHub
-                </a>
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+          </DialogContent>
+        </Dialog>
+      </div>
     </section>
   );
 };

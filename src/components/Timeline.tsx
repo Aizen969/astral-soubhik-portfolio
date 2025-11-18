@@ -132,13 +132,7 @@ const Timeline = () => {
         maxSpeed={30}
       />
       
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-cosmic bg-clip-text text-transparent">
-          Education & Experience
-        </h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-          My journey through academics and professional experiences
-        </p>
+      <div className="relative z-10">
         <TimelineUI data={data} />
       </div>
     </section>
