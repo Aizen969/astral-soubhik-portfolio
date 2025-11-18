@@ -48,17 +48,37 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
-          <div
+          <motion.div
             key={index}
             className="flex justify-start pt-10 md:pt-40 md:gap-10"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ 
+              duration: 0.6, 
+              delay: index * 0.1,
+              ease: [0.25, 0.1, 0.25, 1]
+            }}
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-background flex items-center justify-center">
+              <motion.div 
+                className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-background flex items-center justify-center"
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+              >
                 <div className="h-4 w-4 rounded-full bg-primary border-4 border-background shadow-glow-blue" />
-              </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-primary-glow">
+              </motion.div>
+              <motion.h3 
+                className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-primary-glow"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+              >
                 {item.title}
-              </h3>
+              </motion.h3>
             </div>
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
@@ -67,7 +87,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </h3>
               {item.content}
             </div>
-          </div>
+          </motion.div>
         ))}
         <div
           style={{
