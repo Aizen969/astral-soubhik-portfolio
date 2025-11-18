@@ -70,16 +70,13 @@ const About = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate tech enthusiast and a 2nd-year Computer Science
-                Engineering student at SRM University (KTR) with a specialization in
-                Artificial Intelligence and Machine Learning.
+                I'm a passionate tech enthusiast and a pre-final year (3rd year) Computer Science Engineering student at SRM University, KTR, specializing in Artificial Intelligence and Machine Learning.
               </p>
               <p>
-                I love exploring new technologies, building innovative projects, and
-                contributing to the tech community.
+                I love diving into new technologies, experimenting with ideas, and building projects that actually do something meaningful. I'm equally excited about contributing to the tech community and constantly improving my craft.
               </p>
               <p>
-                When I'm not coding, you can find me playing guitar or drawing.
+                And when I'm not buried in code, you'll probably find me strumming my guitar or sketching something random just to reset my brain.
               </p>
             </div>
 
