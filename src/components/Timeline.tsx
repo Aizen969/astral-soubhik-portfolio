@@ -1,3 +1,4 @@
+import React from "react";
 import { Timeline as TimelineUI } from "@/components/ui/timeline";
 import { ShootingStars } from "./ui/shooting-stars";
 import { StarsBackground } from "./ui/stars-background";

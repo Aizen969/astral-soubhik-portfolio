@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { ShootingStars } from "./ui/shooting-stars";
 import { StarsBackground } from "./ui/stars-background";
 import { Github, ExternalLink } from "lucide-react";
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
