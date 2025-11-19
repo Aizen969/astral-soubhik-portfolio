@@ -9,7 +9,13 @@ import React, { useEffect, useRef, useState } from "react";
 
 interface TimelineEntry {
   title: string;
-  content: React.ReactNode;
+  image: string;
+  imageAlt: string;
+  heading: string;
+  role: string;
+  highlight?: string;
+  isLogo?: boolean;
+  description: string[];
 }
 
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
@@ -60,74 +66,152 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
       <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
-          <motion.div
+          <div
             key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10 group"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ 
-              duration: 0.6, 
-              delay: index * 0.1,
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
+            className="relative pt-10 md:pt-20 pb-16 md:pb-24"
           >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <motion.div 
-                className="h-12 absolute left-2.5 md:left-2.5 w-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-sm border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/60 transition-all duration-500 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-                initial={{ scale: 0, rotate: -180 }}
-                whileInView={{ scale: 1, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1 + 0.2,
-                  type: "spring",
-                  stiffness: 200
-                }}
-              >
+            {/* Year Badge - Centered */}
+            <motion.div 
+              className="flex justify-center mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1
+              }}
+            >
+              <div className="relative">
                 <motion.div 
-                  className="h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent border-2 border-background shadow-glow-blue"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
+                  className="px-6 py-2 rounded-full bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 border border-primary/30 backdrop-blur-sm"
+                  whileHover={{ scale: 1.05 }}
+                  animate={{
                     boxShadow: [
-                      "0 0 10px rgba(59, 130, 246, 0.5)",
-                      "0 0 20px rgba(59, 130, 246, 0.8)",
-                      "0 0 10px rgba(59, 130, 246, 0.5)"
+                      "0 0 20px rgba(59, 130, 246, 0.3)",
+                      "0 0 30px rgba(59, 130, 246, 0.5)",
+                      "0 0 20px rgba(59, 130, 246, 0.3)"
                     ]
                   }}
                   transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
+                    boxShadow: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }
                   }}
-                />
-              </motion.div>
-              <motion.h3 
-                className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold bg-gradient-to-r from-primary-glow via-accent to-primary-glow bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, x: -20 }}
+                >
+                  <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                    {item.title}
+                  </span>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Bento Grid - Two Column Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6 mb-6">
+              {/* LEFT: Image Tile (30-40% on desktop) */}
+              <motion.div
+                className="lg:col-span-2 rounded-2xl overflow-hidden border border-border/50 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-xl hover:border-primary/50 transition-all duration-500 group"
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1 + 0.1
+                }}
+                whileHover={{ scale: 1.02 }}
               >
-                {item.title}
-              </motion.h3>
+                <div className={`relative w-full ${item.isLogo ? 'h-64 md:h-80 flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5' : 'h-64 md:h-80'} overflow-hidden`}>
+                  <img 
+                    src={item.image} 
+                    alt={item.imageAlt}
+                    className={`${item.isLogo ? 'w-40 h-40 md:w-52 md:h-52 object-contain' : 'w-full h-full object-cover'} transition-all duration-700 group-hover:scale-110 ${item.isLogo ? 'group-hover:rotate-3' : ''}`}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                    initial={false}
+                    animate={{
+                      boxShadow: [
+                        "inset 0 0 20px rgba(59, 130, 246, 0)",
+                        "inset 0 0 40px rgba(59, 130, 246, 0.2)",
+                        "inset 0 0 20px rgba(59, 130, 246, 0)"
+                      ]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                </div>
+              </motion.div>
+
+              {/* RIGHT: Content Tile (60-70% on desktop) */}
+              <motion.div
+                className="lg:col-span-3 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-card/70 backdrop-blur-xl border border-border/50 p-6 md:p-8 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500 relative overflow-hidden group"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1 + 0.2
+                }}
+                whileHover={{ scale: 1.01 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10 flex flex-col justify-center h-full">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
+                    {item.heading}
+                  </h3>
+                  
+                  <p className="text-primary font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    {item.role}
+                  </p>
+                  
+                  {item.highlight && (
+                    <p className="text-accent font-bold text-lg md:text-xl mb-2">
+                      {item.highlight}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
             </div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold bg-gradient-to-r from-primary-glow to-accent bg-clip-text text-transparent">
-                {item.title}
-              </h3>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-                className="transform group-hover:scale-[1.02] transition-transform duration-300"
-              >
-                {item.content}
-              </motion.div>
-            </div>
-          </motion.div>
+            {/* Description Panel - Full Width Below Grid */}
+            <motion.div
+              className="rounded-2xl bg-gradient-to-br from-card/80 via-card/60 to-card/50 backdrop-blur-lg border border-border/40 p-6 md:p-8 hover:border-primary/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ 
+                duration: 0.6, 
+                delay: index * 0.1 + 0.3
+              }}
+            >
+              <ul className="space-y-3 md:space-y-4">
+                {item.description.map((bullet, i) => (
+                  <motion.li 
+                    key={i}
+                    className="flex items-start gap-3 text-muted-foreground text-base md:text-lg leading-relaxed"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: index * 0.1 + 0.4 + (i * 0.1)
+                    }}
+                  >
+                    <span className="text-primary text-xl md:text-2xl mt-0.5 flex-shrink-0">•</span>
+                    <span>{bullet}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
         ))}
         <div
           style={{
