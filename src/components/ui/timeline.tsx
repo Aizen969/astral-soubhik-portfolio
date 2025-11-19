@@ -43,202 +43,115 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-transparent font-sans md:px-10"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
+      <div className="max-w-6xl mx-auto py-16 px-4 md:px-8">
         <motion.h2 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
+          className="text-3xl md:text-4xl font-bold text-center mb-3 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           Education & Experience
         </motion.h2>
         <motion.p 
-          className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto text-center"
+          className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto text-center mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          My academic journey and professional experience in tech and AI
+          My academic journey and professional experience
         </motion.p>
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
+      <div ref={ref} className="relative max-w-5xl mx-auto pb-16">
         {data.map((item, index) => (
-          <div
+          <motion.div
             key={index}
-            className="relative pt-10 md:pt-20 pb-16 md:pb-24"
+            className="relative mb-12 last:mb-0"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ 
+              duration: 0.4, 
+              delay: index * 0.08,
+              ease: "easeOut"
+            }}
           >
-            {/* Year Badge - Centered */}
-            <motion.div 
-              className="flex justify-center mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.1
-              }}
-            >
-              <div className="relative">
-                <motion.div 
-                  className="px-6 py-2 rounded-full bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 border border-primary/30 backdrop-blur-sm"
-                  whileHover={{ scale: 1.05 }}
-                  animate={{
-                    boxShadow: [
-                      "0 0 20px rgba(59, 130, 246, 0.3)",
-                      "0 0 30px rgba(59, 130, 246, 0.5)",
-                      "0 0 20px rgba(59, 130, 246, 0.3)"
-                    ]
-                  }}
-                  transition={{
-                    boxShadow: {
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }
-                  }}
-                >
-                  <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                    {item.title}
-                  </span>
-                </motion.div>
+            {/* Year Badge */}
+            <div className="flex items-center justify-center mb-4">
+              <div className="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
+                <span className="text-sm md:text-base font-semibold text-primary">
+                  {item.title}
+                </span>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Bento Grid - Two Column Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6 mb-6">
-              {/* LEFT: Image Tile (30-40% on desktop) */}
-              <motion.div
-                className="lg:col-span-2 rounded-2xl overflow-hidden border border-border/50 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-xl hover:border-primary/50 transition-all duration-500 group"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1 + 0.1
-                }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className={`relative w-full ${item.isLogo ? 'h-64 md:h-80 flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5' : 'h-64 md:h-80'} overflow-hidden`}>
+            {/* Card Container */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 rounded-lg overflow-hidden border border-border/40 bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all duration-300"
+              whileHover={{ y: -3 }}
+            >
+              {/* Image Section */}
+              <div className="md:col-span-4 relative overflow-hidden group">
+                <div className={`relative w-full ${item.isLogo ? 'h-48 md:h-full flex items-center justify-center bg-gradient-to-br from-primary/5 to-accent/5' : 'h-48 md:h-full'} overflow-hidden`}>
                   <img 
                     src={item.image} 
                     alt={item.imageAlt}
-                    className={`${item.isLogo ? 'w-40 h-40 md:w-52 md:h-52 object-contain' : 'w-full h-full object-cover'} transition-all duration-700 group-hover:scale-110 ${item.isLogo ? 'group-hover:rotate-3' : ''}`}
+                    className={`${item.isLogo ? 'w-24 h-24 md:w-32 md:h-32 object-contain' : 'w-full h-full object-cover'} transition-transform duration-500 group-hover:scale-105`}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <motion.div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                    initial={false}
-                    animate={{
-                      boxShadow: [
-                        "inset 0 0 20px rgba(59, 130, 246, 0)",
-                        "inset 0 0 40px rgba(59, 130, 246, 0.2)",
-                        "inset 0 0 20px rgba(59, 130, 246, 0)"
-                      ]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-              </motion.div>
+              </div>
 
-              {/* RIGHT: Content Tile (60-70% on desktop) */}
-              <motion.div
-                className="lg:col-span-3 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-card/70 backdrop-blur-xl border border-border/50 p-6 md:p-8 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-500 relative overflow-hidden group"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1 + 0.2
-                }}
-                whileHover={{ scale: 1.01 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content Section */}
+              <div className="md:col-span-8 p-5 md:p-6 flex flex-col justify-center">
+                <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                  {item.heading}
+                </h3>
                 
-                <div className="relative z-10 flex flex-col justify-center h-full">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent transition-all duration-300">
-                    {item.heading}
-                  </h3>
-                  
-                  <p className="text-primary font-semibold text-base md:text-lg mb-3 flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    {item.role}
+                <p className="text-primary font-medium text-sm md:text-base mb-2 flex items-center gap-2">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary" />
+                  {item.role}
+                </p>
+                
+                {item.highlight && (
+                  <p className="text-accent font-semibold text-sm md:text-base mb-3">
+                    {item.highlight}
                   </p>
-                  
-                  {item.highlight && (
-                    <p className="text-accent font-bold text-lg md:text-xl mb-2">
-                      {item.highlight}
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            </div>
+                )}
 
-            {/* Description Panel - Full Width Below Grid */}
-            <motion.div
-              className="rounded-2xl bg-gradient-to-br from-card/80 via-card/60 to-card/50 backdrop-blur-lg border border-border/40 p-6 md:p-8 hover:border-primary/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition-all duration-500"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1 + 0.3
-              }}
-            >
-              <ul className="space-y-3 md:space-y-4">
-                {item.description.map((bullet, i) => (
-                  <motion.li 
-                    key={i}
-                    className="flex items-start gap-3 text-muted-foreground text-base md:text-lg leading-relaxed"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      duration: 0.4, 
-                      delay: index * 0.1 + 0.4 + (i * 0.1)
-                    }}
-                  >
-                    <span className="text-primary text-xl md:text-2xl mt-0.5 flex-shrink-0">•</span>
-                    <span>{bullet}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                {/* Description Bullets */}
+                <ul className="space-y-1.5 mt-2">
+                  {item.description.map((bullet, i) => (
+                    <li 
+                      key={i}
+                      className="flex items-start gap-2 text-muted-foreground text-xs md:text-sm leading-relaxed"
+                    >
+                      <span className="text-primary text-sm mt-0.5 flex-shrink-0">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         ))}
+        {/* Sleek Timeline Line */}
         <div
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[3px] bg-gradient-to-b from-transparent via-border/50 to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute left-1/2 -translate-x-1/2 top-0 overflow-hidden w-[2px] bg-gradient-to-b from-transparent via-border/30 to-transparent"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[3px] rounded-full"
-          >
-            <div className="w-full h-full bg-gradient-to-b from-primary via-accent to-primary animate-pulse-glow" />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-b from-primary/50 to-accent/50 blur-sm"
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </motion.div>
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-primary/50 via-accent/50 to-primary/50 rounded-full"
+          />
         </div>
       </div>
     </div>
