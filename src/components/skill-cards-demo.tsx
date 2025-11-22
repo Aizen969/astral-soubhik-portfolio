@@ -23,6 +23,12 @@ import {
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
+import { IconBrandCSharp } from "@tabler/icons-react";
+
+// Wrapper for Tabler icon to match react-icons interface
+const CSharpIcon = ({ className, size }: { className?: string; size?: number }) => (
+  <IconBrandCSharp className={className} size={size} stroke={1.5} />
+);
 
 export default function SkillCardsDemo() {
   const skills = [
@@ -60,6 +66,13 @@ export default function SkillCardsDemo() {
       icon: SiCplusplus,
       level: 80,
       description: "Performance-critical applications",
+    },
+    {
+      id: "csharp",
+      name: "C#",
+      icon: CSharpIcon,
+      level: 78,
+      description: "Game development and .NET applications",
     },
     {
       id: "html",
